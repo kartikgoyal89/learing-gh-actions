@@ -11,7 +11,18 @@ jobs:
               run: pwd
 
             - name: Create JS File
-              run: echo 'console.log("Hello World!");' > app.js
+              run: echo "console.log("Hello World!");" > app.js
               
             - name: Run JS File
               run: node app.js
+    
+    my-second-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print all System info
+              run: |
+                lsb_release -a
+                uname -r
+                nproc
+                free -h
+                lsblk
