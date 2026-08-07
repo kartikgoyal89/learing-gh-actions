@@ -11,7 +11,7 @@ jobs:
               run: pwd
 
             - name: Create JS File
-              run: echo "console.log("Hello World!");" > app.js
+              run: echo 'console.log("Hello World!");' > app.js
               
             - name: Run JS File
               run: node app.js
