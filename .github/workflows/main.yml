@@ -1,17 +1,25 @@
-name: My first workflow
-on: push
+name: Deploy Inventory Frontend
+
+on: [push, workflow_dispatch]
+
 jobs:
-  my-first-job:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: List all files
-        run: ls -a
+      - name: Clone Inventory Frontend Repository
+        run: git clone https://github.com/kartikgoyal89/inventory-management-frontend.git .
 
-      - name: Print Working Directory
-        run: pwd
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
 
-      - name: Checkout Repo
-        uses: actions/checkout@v6
+      - name: Install dependencies
+        run: npm ci
 
-      - name: List all files
-        run: ls -a
+      - name: Build the Application
+        run: npm run build
+
+      - name: Deployment complete
+        run: echo "Frontend Deployed Succesfully!"
